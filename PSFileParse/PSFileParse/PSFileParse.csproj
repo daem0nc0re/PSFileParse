@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EDDAA8A1-77DB-4B09-8CF8-652AAB467B21}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PSFileParse</RootNamespace>
+    <AssemblyName>PSFileParse</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auxiliary\BinaryHelper.cs" />
+    <Compile Include="Auxiliary\CryptoHash.cs" />
+    <Compile Include="Auxiliary\FileHash.cs" />
+    <Compile Include="Auxiliary\FileSignature.cs" />
+    <Compile Include="Auxiliary\HexString.cs" />
+    <Compile Include="Auxiliary\LEB128.cs" />
+    <Compile Include="Auxiliary\MUTF8.cs" />
+    <Compile Include="Auxiliary\UInt128.cs" />
+    <Compile Include="Auxiliary\UnixTime.cs" />
+    <Compile Include="Bitmap\BitmapCoreHeader.cs" />
+    <Compile Include="Bitmap\BitmapFileHeader.cs" />
+    <Compile Include="Bitmap\BitmapInfoHeader.cs" />
+    <Compile Include="Bitmap\BmpFile.cs" />
+    <Compile Include="Bitmap\DibFile.cs" />
+    <Compile Include="Bitmap\Enums.cs" />
+    <Compile Include="Bitmap\GradientRect.cs" />
+    <Compile Include="Bitmap\GradientTriangle.cs" />
+    <Compile Include="Bitmap\IconDir.cs" />
+    <Compile Include="Bitmap\IconDirEntry.cs" />
+    <Compile Include="Bitmap\RgbQuad.cs" />
+    <Compile Include="Bitmap\RgbTriple.cs" />
+    <Compile Include="Bitmap\Size.cs" />
+    <Compile Include="Bitmap\Trivertex.cs" />
+    <Compile Include="Cmdlets\GetMachOFileInformationCmdlet.cs" />
+    <Compile Include="Cmdlets\GetPEFileInformationCmdlet.cs" />
+    <Compile Include="MachO\Arm64NeonState.cs" />
+    <Compile Include="MachO\ArmDebugState.cs" />
+    <Compile Include="MachO\ArmExceptionState.cs" />
+    <Compile Include="MachO\ArmExceptionState64.cs" />
+    <Compile Include="MachO\ArmNeonState.cs" />
+    <Compile Include="MachO\ArmThreadState.cs" />
+    <Compile Include="MachO\ArmThreadState64.cs" />
+    <Compile Include="MachO\ArmVfpState.cs" />
+    <Compile Include="MachO\BindEntry.cs" />
+    <Compile Include="MachO\BindFSA.cs" />
+    <Compile Include="MachO\BindTarget.cs" />
+    <Compile Include="MachO\BuildToolVersion.cs" />
+    <Compile Include="MachO\BuildVersionCommand.cs" />
+    <Compile Include="MachO\DataInCodeEntry.cs" />
+    <Compile Include="MachO\DyldChaindPointerEntry.cs" />
+    <Compile Include="MachO\DyldChainedFixups.cs" />
+    <Compile Include="MachO\DyldChainedFixupsHeader.cs" />
+    <Compile Include="MachO\DyldChainedImport.cs" />
+    <Compile Include="MachO\DyldChainedStartsInImage.cs" />
+    <Compile Include="MachO\DyldChainedStartsInSegment.cs" />
+    <Compile Include="MachO\DyldInfoCommand.cs" />
+    <Compile Include="MachO\DylibCommand.cs" />
+    <Compile Include="MachO\DylibModule.cs" />
+    <Compile Include="MachO\DylibReference.cs" />
+    <Compile Include="MachO\DylibTableEntry.cs" />
+    <Compile Include="MachO\DylibTableOfContents.cs" />
+    <Compile Include="MachO\DylinkerCommand.cs" />
+    <Compile Include="MachO\DysymtabCommand.cs" />
+    <Compile Include="MachO\EncryptionInfoCommand.cs" />
+    <Compile Include="MachO\EntryPointCommand.cs" />
+    <Compile Include="MachO\Enums.cs" />
+    <Compile Include="MachO\ExportInfo.cs" />
+    <Compile Include="MachO\ExportsTrieEntry.cs" />
+    <Compile Include="MachO\FatArch.cs" />
+    <Compile Include="MachO\FatHeader.cs" />
+    <Compile Include="MachO\FileSetEntryCommand.cs" />
+    <Compile Include="MachO\FunctionStartsEntry.cs" />
+    <Compile Include="MachO\FunctionTableEntry.cs" />
+    <Compile Include="MachO\FvmFileCommand.cs" />
+    <Compile Include="MachO\FvmLibCommand.cs" />
+    <Compile Include="MachO\IdentCommand.cs" />
+    <Compile Include="MachO\IndirectSymbolEntry.cs" />
+    <Compile Include="MachO\LinkEditDataCommand.cs" />
+    <Compile Include="MachO\LinkerOptionCommand.cs" />
+    <Compile Include="MachO\LoadCommand.cs" />
+    <Compile Include="MachO\MachOFatFile.cs" />
+    <Compile Include="MachO\MachOFile.cs" />
+    <Compile Include="MachO\MachOHeader.cs" />
+    <Compile Include="MachO\MachOSection.cs" />
+    <Compile Include="MachO\NoteCommand.cs" />
+    <Compile Include="MachO\PPCThreadState.cs" />
+    <Compile Include="MachO\PPCThreadState64.cs" />
+    <Compile Include="MachO\PrebindCksumCommand.cs" />
+    <Compile Include="MachO\PreboundDylibCommand.cs" />
+    <Compile Include="MachO\RebaseEntry.cs" />
+    <Compile Include="MachO\RebaseFSA.cs" />
+    <Compile Include="MachO\RelocationInfo.cs" />
+    <Compile Include="MachO\RoutinesCommand.cs" />
+    <Compile Include="MachO\RPathCommand.cs" />
+    <Compile Include="MachO\SectionFlags.cs" />
+    <Compile Include="MachO\SegmentCommand.cs" />
+    <Compile Include="MachO\SegmentTableEntry.cs" />
+    <Compile Include="MachO\SourceVersionCommand.cs" />
+    <Compile Include="MachO\StringEntry.cs" />
+    <Compile Include="MachO\SubClientCommand.cs" />
+    <Compile Include="MachO\SubFrameworkCommand.cs" />
+    <Compile Include="MachO\SubLibraryCommand.cs" />
+    <Compile Include="MachO\SubUmbrellaCommand.cs" />
+    <Compile Include="MachO\SymbolTableEntry.cs" />
+    <Compile Include="MachO\SymSegCommand.cs" />
+    <Compile Include="MachO\SymTabCommand.cs" />
+    <Compile Include="MachO\TargetTripleCommand.cs" />
+    <Compile Include="MachO\ThreadCommand.cs" />
+    <Compile Include="MachO\TwoLevelHint.cs" />
+    <Compile Include="MachO\TwoLevelHintCommand.cs" />
+    <Compile Include="MachO\TwoLevelHintEntry.cs" />
+    <Compile Include="MachO\UUIDCommand.cs" />
+    <Compile Include="MachO\VersionMinCommand.cs" />
+    <Compile Include="MachO\X86ThreadState32.cs" />
+    <Compile Include="MachO\X86ThreadState64.cs" />
+    <Compile Include="PE\BaseRelocTypeOffsetEntry.cs" />
+    <Compile Include="PE\BlobStreamEntry.cs" />
+    <Compile Include="PE\CLRMetadata.cs" />
+    <Compile Include="PE\CLRMetadataStream.cs" />
+    <Compile Include="PE\CLRMetadataTable\AssemblyEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\AssemblyOSEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\AssemblyProcessorEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\AssemblyRefEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\AssemblyRefOSEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\AssemblyRefProcessorEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\ClassLayoutEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\CodedIndex.cs" />
+    <Compile Include="PE\CLRMetadataTable\ConstantEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\CustomAttributeEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\DeclSecurityEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\EventEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\EventMapEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\ExportedTypeEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\FieldEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\FieldFlags.cs" />
+    <Compile Include="PE\CLRMetadataTable\FieldLayoutEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\FieldMarshalEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\FieldRVAEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\FileEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\GenericParamAttributeFlags.cs" />
+    <Compile Include="PE\CLRMetadataTable\GenericParamConstraintEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\GenericParamEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\Globals.cs" />
+    <Compile Include="PE\CLRMetadataTable\ImplMapEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\InterfaceImplEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\ManifestResourceEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\MemberRefEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\MethodDefEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\MethodFlags.cs" />
+    <Compile Include="PE\CLRMetadataTable\MethodImplEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\MethodImplFlags.cs" />
+    <Compile Include="PE\CLRMetadataTable\MethodSemanticsEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\MethodSpecEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\ModuleEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\ModuleRefEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\NestedClassEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\ParamEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\PInvokeAttributeFlags.cs" />
+    <Compile Include="PE\CLRMetadataTable\PropertyEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\PropertyMapEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\StandAloneSigEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\TableIndex.cs" />
+    <Compile Include="PE\CLRMetadataTable\TypeDefEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\TypeFlags.cs" />
+    <Compile Include="PE\CLRMetadataTable\TypeRefEntry.cs" />
+    <Compile Include="PE\CLRMetadataTable\TypeSpecEntry.cs" />
+    <Compile Include="PE\DelayImportFunction.cs" />
+    <Compile Include="PE\Enums.cs" />
+    <Compile Include="PE\ExportFunction.cs" />
+    <Compile Include="PE\FPOData.cs" />
+    <Compile Include="PE\GuidStreamEntry.cs" />
+    <Compile Include="PE\ImageBaseRelocation.cs" />
+    <Compile Include="PE\ImageCLRDirectory.cs" />
+    <Compile Include="PE\ImageCOFFSymbolsHeader.cs" />
+    <Compile Include="PE\ImageCOR20Header.cs" />
+    <Compile Include="PE\ImageDataDirectories.cs" />
+    <Compile Include="PE\ImageDataDirectory.cs" />
+    <Compile Include="PE\ImageDebugDirectory.cs" />
+    <Compile Include="PE\ImageDebugMisc.cs" />
+    <Compile Include="PE\ImageDelayLoadDescriptor.cs" />
+    <Compile Include="PE\ImageDOSHeader.cs" />
+    <Compile Include="PE\ImageExportDirectory.cs" />
+    <Compile Include="PE\ImageFileHeader.cs" />
+    <Compile Include="PE\ImageImportByName.cs" />
+    <Compile Include="PE\ImageImportDescriptor.cs" />
+    <Compile Include="PE\ImageLoadConfigCodeIntegrity.cs" />
+    <Compile Include="PE\ImageLoadConfigDirectory32.cs" />
+    <Compile Include="PE\ImageLoadConfigDirectory64.cs" />
+    <Compile Include="PE\ImageNtHeaders.cs" />
+    <Compile Include="PE\ImageOptionalHeader32.cs" />
+    <Compile Include="PE\ImageOptionalHeader64.cs" />
+    <Compile Include="PE\ImageResourceDataEntry.cs" />
+    <Compile Include="PE\ImageResourceDirectory.cs" />
+    <Compile Include="PE\ImageResourceDirectoryEntry.cs" />
+    <Compile Include="PE\ImageRichHeader.cs" />
+    <Compile Include="PE\ImageRomOptionalHeader.cs" />
+    <Compile Include="PE\ImageRuntimeFunctionEntryArm.cs" />
+    <Compile Include="PE\ImageRuntimeFunctionEntryArm64.cs" />
+    <Compile Include="PE\ImageRuntimeFunctionEntryMips32.cs" />
+    <Compile Include="PE\ImageRuntimeFunctionEntryX64.cs" />
+    <Compile Include="PE\ImageSectionHeader.cs" />
+    <Compile Include="PE\ImageThunkData.cs" />
+    <Compile Include="PE\ImageTLSDirectory.cs" />
+    <Compile Include="PE\ImpHashGen.cs" />
+    <Compile Include="PE\PEFile.cs" />
+    <Compile Include="PE\ReproHash.cs" />
+    <Compile Include="PE\RichHeaderEntry.cs" />
+    <Compile Include="PE\RSDSI.cs" />
+    <Compile Include="PE\StringsStreamEntry.cs" />
+    <Compile Include="PE\TildeStreamEntry.cs" />
+    <Compile Include="PE\UserStringsStreamEntry.cs" />
+    <Compile Include="PE\WinCertificate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="PowerShellStandard.Library">
+      <Version>5.1.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
