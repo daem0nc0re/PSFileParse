@@ -16,30 +16,39 @@ namespace PSFileParse.MachO
         public UInt32 Magic { get; }
         public UInt32 Length { get; }
         public UInt32 Count { get; }
-        public CSBlobIndex[] Blobs { get; }
+        public CSBlobIndex[] BlobIndices { get; }
+        public CSGenericBlobs[] Blobs { get; }
 
 
         public CSBlob(
             byte[] filebytes,
             UInt32 offset)
         {
+            var index_base = offset + 12u;
             Magic = BinaryHelper.ToUInt32Big(filebytes, offset);
             Length = BinaryHelper.ToUInt32Big(filebytes, offset + 4);
             Count = BinaryHelper.ToUInt32Big(filebytes, offset + 8);
-            Blobs = new CSBlobIndex[Count];
-            offset += 12u;
+            BlobIndices = new CSBlobIndex[Count];
+            Blobs = new CSGenericBlobs[Count];
 
             for (UInt32 i = 0u; i < Count; i++)
-                Blobs[i] = new CSBlobIndex(filebytes, ref offset, i);
+            {
+                BlobIndices[i] = new CSBlobIndex(filebytes, ref index_base, i);
+                Blobs[i] = new CSGenericBlobs(
+                    filebytes,
+                    offset + BlobIndices[i].Offset,
+                    i);
+            }
         }
 
 
         public override String ToString()
         {
-            return String.Format("@{{Magic={0}; Length={1}; Count={2}; Blobs={3}}}",
+            return String.Format("@{{Magic={0}; Length={1}; Count={2}; BlobIndices={3}; Blobs={4}}}",
                 Magic,
                 Length,
                 Count,
+                BlobIndices,
                 Blobs);
         }
     }

@@ -81,6 +81,7 @@
     <Compile Include="MachO\BuildVersionCommand.cs" />
     <Compile Include="MachO\CSBlob.cs" />
     <Compile Include="MachO\CSBlobIndex.cs" />
+    <Compile Include="MachO\CSGenericBlobs.cs" />
     <Compile Include="MachO\DataInCodeEntry.cs" />
     <Compile Include="MachO\DyldChaindPointerEntry.cs" />
     <Compile Include="MachO\DyldChainedFixups.cs" />

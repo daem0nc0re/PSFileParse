@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.Contracts;
 
 namespace PSFileParse.MachO
 {
@@ -79,6 +80,21 @@ namespace PSFileParse.MachO
     }
 
 
+    public enum  CSMagic : UInt32
+    {
+        Requirement = 0xFADE0C00,
+        Requirements = 0xFADE0C01,
+        CodeDirectory = 0xFADE0C02,
+        EmbeddedSignature = 0xFADE0CC0,
+        EmbeddedSignatureOld = 0xFADE0B02,
+        EmbeddedEntitlements = 0xFADE7171,
+        EmbeddedDEREntitlements = 0xfade7172,
+        DetachedSignature = 0xFADE0CC1,
+        BlobWrapper = 0xFADE0B01,
+        EmbeddedLaunchConstraint = 0xFADE8181
+    }
+
+
     public enum CSSlotType : UInt32
     {
         CodeDirectory = 0,
@@ -87,7 +103,7 @@ namespace PSFileParse.MachO
         ResourceDir = 3,
         Application = 4,
         Entitlements = 5,
-        DerEntitlements = 7,
+        DEREntitlements = 7,
         LaunchConstraintSelf = 8,
         LaunchConstraintParent = 9,
         LaunchConstraintResponsible = 10,
