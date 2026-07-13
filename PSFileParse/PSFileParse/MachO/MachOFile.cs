@@ -21,6 +21,7 @@ namespace PSFileParse.MachO
         public Dictionary<String, Object> LinkEditData { get; } = new Dictionary<String, Object>();
         public Dictionary<String, Object> DyldInfo { get; } = new Dictionary<String, Object>();
         public TwoLevelHintEntry[] TwoLevelHints { get; }
+        public CSBlob CodeSignature { get; }
         internal static UInt32 SymtabIndex { get; set; }
         internal static UInt32 DysymtabIndex { get; set; }
         internal static UInt32 TwoLevelHintIndex { get; set; }
@@ -358,6 +359,12 @@ namespace PSFileParse.MachO
                         Sections,
                         is_bigendian);
                     LinkEditData.Add(command.Key.ToString(), fixups);
+                }
+                else if (command.Key == MachOLoadCommands.CodeSignature)
+                {
+                    var info = (LinkEditDataCommand)LoadCommands[command.Value].Content;
+                    CodeSignature = new CSBlob(filebytes, info.DataOffset);
+                    LinkEditData.Add(command.Key.ToString(), CodeSignature);
                 }
             }
 

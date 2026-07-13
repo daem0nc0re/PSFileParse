@@ -79,6 +79,27 @@ namespace PSFileParse.MachO
     }
 
 
+    public enum CSSlotType : UInt32
+    {
+        CodeDirectory = 0,
+        InfoSlot = 1,
+        Requirements = 2,
+        ResourceDir = 3,
+        Application = 4,
+        Entitlements = 5,
+        DerEntitlements = 7,
+        LaunchConstraintSelf = 8,
+        LaunchConstraintParent = 9,
+        LaunchConstraintResponsible = 10,
+        LibraryConstraint = 11,
+        AlternateCodeDirectories = 0x1000,
+        // CSSLOT_ALTERNATE_CODEDIRECTORY_MAX = 5, /* max number of alternate CD slots */
+        SignatureSlot = 0x10000,
+        IdentificationSlot = 0x10001,
+        TicketSlot = 0x10002
+    }
+
+
     public enum DataInCodeEntryKinds : UInt16
     {
         None = 0x00000000,
