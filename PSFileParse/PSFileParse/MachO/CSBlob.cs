@@ -17,7 +17,7 @@ namespace PSFileParse.MachO
         public UInt32 Length { get; }
         public UInt32 Count { get; }
         public CSBlobIndex[] BlobIndexes { get; }
-        public CSGenericBlobs[] Blobs { get; }
+        public Object[] Blobs { get; }
 
 
         public CSBlob(
@@ -34,10 +34,21 @@ namespace PSFileParse.MachO
             for (UInt32 i = 0u; i < Count; i++)
             {
                 BlobIndexes[i] = new CSBlobIndex(filebytes, ref index_base, i);
-                Blobs[i] = new CSGenericBlobs(
-                    filebytes,
-                    offset + BlobIndexes[i].Offset,
-                    i);
+
+                if (BlobIndexes[i].Type == CSSlotType.CodeDirectory)
+                {
+                    Blobs[i] = new CSGenericBlobs(
+                        filebytes,
+                        offset + BlobIndexes[i].Offset,
+                        i);
+                }
+                else
+                {
+                    Blobs[i] = new CSGenericBlobs(
+                        filebytes,
+                        offset + BlobIndexes[i].Offset,
+                        i);
+                }
             }
         }
 

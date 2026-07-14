@@ -366,11 +366,12 @@ namespace PSFileParse.MachO
                     var signature = new CSBlob(filebytes, info.DataOffset);
                     LinkEditData.Add(command.Key.ToString(), signature);
 
-                    foreach (CSGenericBlobs entry in signature.Blobs)
+                    for (UInt32 i = 0u; i < signature.Count; i++)
                     {
-                        if (entry.Magic == CSMagic.EmbeddedEntitlements)
+                        if (signature.BlobIndexes[i].Type == CSSlotType.Entitlements)
                         {
-                            Entitlements = System.Text.Encoding.UTF8.GetString(entry.Data);
+                            Entitlements = System.Text.Encoding.UTF8.GetString(
+                                ((CSGenericBlobs)signature.Blobs[i]).Data);
                             break;
                         }
                     }
