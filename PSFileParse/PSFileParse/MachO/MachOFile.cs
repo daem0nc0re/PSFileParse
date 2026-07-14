@@ -21,6 +21,7 @@ namespace PSFileParse.MachO
         public Dictionary<String, Object> LinkEditData { get; } = new Dictionary<String, Object>();
         public Dictionary<String, Object> DyldInfo { get; } = new Dictionary<String, Object>();
         public TwoLevelHintEntry[] TwoLevelHints { get; }
+        public String Entitlements { get; }
         internal static UInt32 SymtabIndex { get; set; }
         internal static UInt32 DysymtabIndex { get; set; }
         internal static UInt32 TwoLevelHintIndex { get; set; }
@@ -364,6 +365,15 @@ namespace PSFileParse.MachO
                     var info = (LinkEditDataCommand)LoadCommands[command.Value].Content;
                     var signature = new CSBlob(filebytes, info.DataOffset);
                     LinkEditData.Add(command.Key.ToString(), signature);
+
+                    foreach (CSGenericBlobs entry in signature.Blobs)
+                    {
+                        if (entry.Magic == CSMagic.EmbeddedEntitlements)
+                        {
+                            Entitlements = System.Text.Encoding.UTF8.GetString(entry.Data);
+                            break;
+                        }
+                    }
                 }
             }
 

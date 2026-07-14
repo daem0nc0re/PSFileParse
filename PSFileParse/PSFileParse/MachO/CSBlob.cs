@@ -16,7 +16,7 @@ namespace PSFileParse.MachO
         public UInt32 Magic { get; }
         public UInt32 Length { get; }
         public UInt32 Count { get; }
-        public CSBlobIndex[] BlobIndices { get; }
+        public CSBlobIndex[] BlobIndexes { get; }
         public CSGenericBlobs[] Blobs { get; }
 
 
@@ -28,15 +28,15 @@ namespace PSFileParse.MachO
             Magic = BinaryHelper.ToUInt32Big(filebytes, offset);
             Length = BinaryHelper.ToUInt32Big(filebytes, offset + 4);
             Count = BinaryHelper.ToUInt32Big(filebytes, offset + 8);
-            BlobIndices = new CSBlobIndex[Count];
+            BlobIndexes = new CSBlobIndex[Count];
             Blobs = new CSGenericBlobs[Count];
 
             for (UInt32 i = 0u; i < Count; i++)
             {
-                BlobIndices[i] = new CSBlobIndex(filebytes, ref index_base, i);
+                BlobIndexes[i] = new CSBlobIndex(filebytes, ref index_base, i);
                 Blobs[i] = new CSGenericBlobs(
                     filebytes,
-                    offset + BlobIndices[i].Offset,
+                    offset + BlobIndexes[i].Offset,
                     i);
             }
         }
@@ -44,11 +44,11 @@ namespace PSFileParse.MachO
 
         public override String ToString()
         {
-            return String.Format("@{{Magic={0}; Length={1}; Count={2}; BlobIndices={3}; Blobs={4}}}",
+            return String.Format("@{{Magic={0}; Length={1}; Count={2}; BlobIndexes={3}; Blobs={4}}}",
                 Magic,
                 Length,
                 Count,
-                BlobIndices,
+                BlobIndexes,
                 Blobs);
         }
     }
