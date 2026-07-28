@@ -388,7 +388,7 @@ namespace PSFileParse.MachO
 
                 var info = (DyldInfoCommand)cmd.Content;
 
-                /*if ((info.RebaseOffset != 0) && (info.RebaseSize > 0))
+                if ((info.RebaseOffset != 0) && (info.RebaseSize > 0))
                 {
                     var content = new Dictionary<String, Object>();
                     var fsa = new RebaseFSA();
@@ -415,7 +415,7 @@ namespace PSFileParse.MachO
                     content.Add("Operations", rebases.ToArray());
                     content.Add("Entries", RebaseFSA.Stack.ToArray());
                     DyldInfo.Add("Rebases", content);
-                }*/
+                }
 
                 if ((info.BindOffset != 0) && (info.BindSize > 0))
                 {

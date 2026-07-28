@@ -72,7 +72,7 @@ namespace PSFileParse.MachO
             }
             else if (Opcode == RebaseOpcode.DoRebaseImmTimes)
             {
-                for (byte i = 0; i < Immediate; i++)
+                for (UInt64 i = 0; i < Immediate; i++)
                 {
                     Stack.Add(new RebaseEntry(
                         filebytes,
@@ -88,7 +88,7 @@ namespace PSFileParse.MachO
             {
                 var repeat_count = LEB128.ToUInt64(filebytes, ref offset);
 
-                for (byte i = 0; i < repeat_count; i++)
+                for (UInt64 i = 0; i < repeat_count; i++)
                 {
                     Stack.Add(new RebaseEntry(
                         filebytes,
@@ -116,7 +116,7 @@ namespace PSFileParse.MachO
                 var repeat_count = LEB128.ToUInt64(filebytes, ref offset);
                 var stride = LEB128.ToUInt64(filebytes, ref offset);
 
-                for (byte i = 0; i < repeat_count; i++)
+                for (UInt64 i = 0; i < repeat_count; i++)
                 {
                     Stack.Add(new RebaseEntry(
                         filebytes,
