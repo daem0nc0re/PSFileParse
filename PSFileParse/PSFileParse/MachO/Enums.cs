@@ -621,6 +621,22 @@ namespace PSFileParse.MachO
     }
 
 
+    public enum PlatformIdentifier : byte
+    {
+        None = 0,
+        MacOS = 1,
+        IOS = 2,
+        TVOS = 3,
+        WatchOS = 4,
+        BridgeOS = 5,
+        MacCatalyst = 6,
+        IOSSimulator = 7,
+        TVOSSimulator = 8,
+        WatchOSSimulator = 9,
+        DriverKit = 10
+    }
+
+
     public enum PPCThreadFlavors : UInt32
     {
         ThreadState = 1,

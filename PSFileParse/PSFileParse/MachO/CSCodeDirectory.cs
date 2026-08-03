@@ -70,7 +70,7 @@ namespace PSFileParse.MachO
         public UInt32 CodeLimit { get; }
         public byte HashSize { get; }
         public CSHashType HashType { get; }
-        public byte Platform { get; }
+        public PlatformIdentifier Platform { get; }
         public byte PageSize { get; }
         public UInt32 Spare2 { get; }
         public Object /* UInt32 */ ScatterOffset { get; }
@@ -89,6 +89,7 @@ namespace PSFileParse.MachO
         public Object /* UInt32 */ LinkageSize { get; }
         public CSHashBlob Hash { get; }
         public String Identifier { get; }
+        public String TeamIdentifier { get; }
 
 
         internal CSCodeDirectory(byte[] filebytes, UInt32 offset)
@@ -104,7 +105,7 @@ namespace PSFileParse.MachO
             CodeLimit = BinaryHelper.ToUInt32Big(filebytes, offset + 32);
             HashSize = filebytes[offset + 36];
             HashType = (CSHashType)filebytes[offset + 37];
-            Platform = filebytes[offset + 38];
+            Platform = (PlatformIdentifier)filebytes[offset + 38];
             PageSize = filebytes[offset + 39];
             Spare2 = BinaryHelper.ToUInt32Big(filebytes, offset + 40);
 
@@ -118,7 +119,12 @@ namespace PSFileParse.MachO
                 ScatterOffset = BinaryHelper.ToUInt32Big(filebytes, offset + 44);
 
             if (Version >= 0x20200u)
+            {
                 TeamOffset = BinaryHelper.ToUInt32Big(filebytes, offset + 48);
+
+                if ((UInt32)TeamOffset > 0)
+                    TeamIdentifier = BinaryHelper.GetUTF8String(filebytes, offset + (UInt32)TeamOffset);
+            }
 
             if (Version >= 0x20300u)
             {
@@ -152,7 +158,7 @@ namespace PSFileParse.MachO
 
         public override String ToString()
         {
-            return String.Format("@{{Magic={0}; Length={1}; Version={2}; Flags={3}; HashOffset={4}; IdentOffset={5}; NumberOfSpecialSlots={6}; NumberOfCodeSlots={7}; CodeLimit={8}; HashSize={9}; HashType={10}; Platform={11}; PageSize={12}; Spare2={13}; ScatterOffset={14}; TeamOffset={15}; Spare3={16}; CodeLimit64={17}; ExecSegBase={18}; ExecSegLimit={19}; ExecSegFlags={20}; Runtime={21}; PreEncryptOffset={22}; LinkageHashType={23}; LinkageApplicationType={24}; LinkageApplicationSubType={25}; LinkageOffset={26}; LinkageSize={27}; Hash={28}; Identifier={29}}}",
+            return String.Format("@{{Magic={0}; Length={1}; Version={2}; Flags={3}; HashOffset={4}; IdentOffset={5}; NumberOfSpecialSlots={6}; NumberOfCodeSlots={7}; CodeLimit={8}; HashSize={9}; HashType={10}; Platform={11}; PageSize={12}; Spare2={13}; ScatterOffset={14}; TeamOffset={15}; Spare3={16}; CodeLimit64={17}; ExecSegBase={18}; ExecSegLimit={19}; ExecSegFlags={20}; Runtime={21}; PreEncryptOffset={22}; LinkageHashType={23}; LinkageApplicationType={24}; LinkageApplicationSubType={25}; LinkageOffset={26}; LinkageSize={27}; Hash={28}; Identifier={29}; TeamIdentifier= {30}}}",
                 Magic,
                 Length,
                 Version,
@@ -182,7 +188,8 @@ namespace PSFileParse.MachO
                 LinkageOffset,
                 LinkageSize,
                 Hash,
-                Identifier);
+                Identifier,
+                TeamIdentifier);
         }
     }
 }
