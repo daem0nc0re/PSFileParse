@@ -142,8 +142,8 @@ namespace PSFileParse.MachO
             if (Version >= 0x20600u)
             {
                 LinkageHashType = filebytes[offset + 96];
-                LinkageApplicationType = filebytes[offset + 97];
-                LinkageApplicationSubType = BinaryHelper.ToUInt16Big(filebytes, offset + 98);
+                LinkageApplicationType = (CSLinkageApplicationType)filebytes[offset + 97];
+                LinkageApplicationSubType = (CSLinkageApplicationSubType)BinaryHelper.ToUInt16Big(filebytes, offset + 98);
                 LinkageOffset = BinaryHelper.ToUInt32(filebytes, offset + 100);
                 LinkageSize = BinaryHelper.ToUInt32(filebytes, offset + 104);
             }

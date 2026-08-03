@@ -102,6 +102,23 @@ namespace PSFileParse.MachO
     }
 
 
+    public enum CSLinkageApplicationType
+    {
+        Invalid = 0,
+        Rosetta = 1,
+        OOPJIT = 2,
+    }
+
+
+    public enum CSLinkageApplicationSubType
+    {
+        Invalid = 0,
+        Previews = 1,
+        MLCompiler = 2,
+        Total
+    }
+
+
     public enum  CSMagic : UInt32
     {
         Requirement = 0xFADE0C00,
