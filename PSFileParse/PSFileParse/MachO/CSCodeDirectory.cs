@@ -88,6 +88,7 @@ namespace PSFileParse.MachO
         public Object /* UInt32 */ LinkageOffset { get; }
         public Object /* UInt32 */ LinkageSize { get; }
         public CSHashBlob Hash { get; }
+        public String Identifier { get; }
 
 
         internal CSCodeDirectory(byte[] filebytes, UInt32 offset)
@@ -109,6 +110,9 @@ namespace PSFileParse.MachO
 
             if (HashSize > 0)
                 Hash = new CSHashBlob(filebytes, offset + HashOffset, HashType);
+
+            if (IdentOffset > 0)
+                Identifier = BinaryHelper.GetUTF8String(filebytes, offset + IdentOffset);
 
             if (Version >= 0x20100u)
                 ScatterOffset = BinaryHelper.ToUInt32Big(filebytes, offset + 44);
@@ -148,7 +152,7 @@ namespace PSFileParse.MachO
 
         public override String ToString()
         {
-            return String.Format("@{{Magic={0}; Length={1}; Version={2}; Flags={3}; HashOffset={4}; IdentOffset={5}; NumberOfSpecialSlots={6}; NumberOfCodeSlots={7}; CodeLimit={8}; HashSize={9}; HashType={10}; Platform={11}; PageSize={12}; Spare2={13}; ScatterOffset={14}; TeamOffset={15}; Spare3={16}; CodeLimit64={17}; ExecSegBase={18}; ExecSegLimit={19}; ExecSegFlags={20}; Runtime={21}; PreEncryptOffset={22}; LinkageHashType={23}; LinkageApplicationType={24}; LinkageApplicationSubType={25}; LinkageOffset={26}; LinkageSize={27}; Hash={28}}}",
+            return String.Format("@{{Magic={0}; Length={1}; Version={2}; Flags={3}; HashOffset={4}; IdentOffset={5}; NumberOfSpecialSlots={6}; NumberOfCodeSlots={7}; CodeLimit={8}; HashSize={9}; HashType={10}; Platform={11}; PageSize={12}; Spare2={13}; ScatterOffset={14}; TeamOffset={15}; Spare3={16}; CodeLimit64={17}; ExecSegBase={18}; ExecSegLimit={19}; ExecSegFlags={20}; Runtime={21}; PreEncryptOffset={22}; LinkageHashType={23}; LinkageApplicationType={24}; LinkageApplicationSubType={25}; LinkageOffset={26}; LinkageSize={27}; Hash={28}; Identifier={29}}}",
                 Magic,
                 Length,
                 Version,
@@ -177,7 +181,8 @@ namespace PSFileParse.MachO
                 LinkageApplicationSubType,
                 LinkageOffset,
                 LinkageSize,
-                Hash);
+                Hash,
+                Identifier);
         }
     }
 }
