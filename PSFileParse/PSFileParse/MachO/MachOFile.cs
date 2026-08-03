@@ -368,10 +368,10 @@ namespace PSFileParse.MachO
 
                     for (UInt32 i = 0u; i < signature.Count; i++)
                     {
-                        if (signature.BlobIndexes[i].Type == CSSlotType.Entitlements)
+                        if (signature.Blobs[i].Type == CSSlotType.Entitlements)
                         {
                             Entitlements = System.Text.Encoding.UTF8.GetString(
-                                ((CSGenericBlobs)signature.Blobs[i]).Data);
+                                ((CSGenericBlobs)signature.Blobs[i].Content).Data);
                             break;
                         }
                     }

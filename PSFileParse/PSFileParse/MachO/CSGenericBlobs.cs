@@ -5,18 +5,13 @@ namespace PSFileParse.MachO
 {
     public sealed class CSGenericBlobs
     {
-        public UInt32 Index { get; }
         public CSMagic Magic { get; }
         public UInt32 Length { get; }
         public byte[] Data { get; }
 
 
-        internal CSGenericBlobs(
-            byte[] filebytes,
-            UInt32 offset,
-            UInt32 index)
+        internal CSGenericBlobs(byte[] filebytes, UInt32 offset)
         {
-            Index = index;
             Magic = (CSMagic)BinaryHelper.ToUInt32Big(filebytes, offset);
             Length = BinaryHelper.ToUInt32Big(filebytes, offset + 4);
             Data = new byte[Length - 8];

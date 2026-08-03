@@ -80,6 +80,28 @@ namespace PSFileParse.MachO
     }
 
 
+    [Flags]
+    public enum CSExecSegFlags : UInt64
+    {
+        MainBinary = 0x1,
+        AllowUnsigned = 0x10,
+        Debugger = 0x20,
+        JIT = 0x40,
+        SkipLV = 0x80,
+        CanLoadCDHash = 0x100,
+        CanExecCDHash = 0x200
+    }
+
+
+    public enum CSHashType : byte
+    {
+        SHA1 = 1, // 20 Bytes
+        SHA256 = 2, // 32 Bytes
+        SHA256Truncated = 3, // 20 Bytes
+        SHA384 = 4 // 48 Bytes
+    }
+
+
     public enum  CSMagic : UInt32
     {
         Requirement = 0xFADE0C00,
