@@ -90,6 +90,8 @@ namespace PSFileParse.MachO
         public CSHashBlob CDHash { get; }
         public String Identifier { get; }
         public String TeamIdentifier { get; }
+        public CSSpecialSlot[] SpecialSlots { get; }
+        public CSCodeSlot[] CodeSlots { get; }
 
 
         internal CSCodeDirectory(byte[] filebytes, UInt32 offset)
@@ -112,6 +114,31 @@ namespace PSFileParse.MachO
 
             if (IdentOffset > 0)
                 Identifier = BinaryHelper.GetUTF8String(filebytes, offset + IdentOffset);
+
+            if (NumberOfSpecialSlots > 0)
+            {
+                var slot_offset = offset + HashOffset;
+                SpecialSlots = new CSSpecialSlot[NumberOfSpecialSlots];
+
+                for (UInt32 i = 0u; i < NumberOfSpecialSlots; i++)
+                {
+                    slot_offset -= HashSize;
+                    SpecialSlots[i] = new CSSpecialSlot(filebytes, slot_offset, i, HashType, HashSize);
+                }
+                    
+            }
+
+            if (NumberOfCodeSlots > 0)
+            {
+                var slot_offset = offset + HashOffset;
+                CodeSlots = new CSCodeSlot[NumberOfCodeSlots];
+
+                for (UInt32 i = 0u; i < NumberOfCodeSlots; i++)
+                {
+                    CodeSlots[i] = new CSCodeSlot(filebytes, slot_offset, i, HashType, HashSize);
+                    slot_offset += HashSize;
+                }
+            }
 
             if (Version >= 0x20100u)
                 ScatterOffset = BinaryHelper.ToUInt32Big(filebytes, offset + 44);

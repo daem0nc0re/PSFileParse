@@ -142,6 +142,7 @@ namespace PSFileParse.MachO
         ResourceDir = 3,
         Application = 4,
         Entitlements = 5,
+        Unused = 6,
         DEREntitlements = 7,
         LaunchConstraintSelf = 8,
         LaunchConstraintParent = 9,
