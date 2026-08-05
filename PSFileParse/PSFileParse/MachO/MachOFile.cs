@@ -394,8 +394,9 @@ namespace PSFileParse.MachO
                     var fsa = new RebaseFSA();
                     var rebases = new List<RebaseFSA>();
                     var rebase_offset = info.RebaseOffset;
+                    var last = info.RebaseOffset + info.RebaseSize;
 
-                    for (UInt32 i = 0u; i < info.RebaseSize; i++)
+                    while (rebase_offset < last)
                     {
                         var rebase = new RebaseFSA(
                             filebytes,
@@ -425,7 +426,7 @@ namespace PSFileParse.MachO
                     var bind_offset = info.BindOffset;
                     var last = info.BindOffset + info.BindSize;
 
-                    for (UInt32 i = 0u; bind_offset < last; i++)
+                    while (bind_offset < last)
                     {
                         var bind = new BindFSA(
                             filebytes,
@@ -452,7 +453,7 @@ namespace PSFileParse.MachO
                     var bind_offset = info.WeakBindOffset;
                     var last = info.WeakBindOffset + info.WeakBindSize;
 
-                    for (UInt32 i = 0u; bind_offset < last; i++)
+                    while (bind_offset < last)
                     {
                         var bind = new BindFSA(
                             filebytes,
@@ -479,7 +480,7 @@ namespace PSFileParse.MachO
                     var bind_offset = info.LazyBindOffset;
                     var last = info.LazyBindOffset + info.LazyBindSize;
 
-                    for (UInt32 i = 0u; bind_offset < last; i++)
+                    while (bind_offset < last)
                     {
                         var bind = new BindFSA(
                             filebytes,

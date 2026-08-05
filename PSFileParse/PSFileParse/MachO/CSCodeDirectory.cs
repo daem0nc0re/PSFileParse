@@ -125,7 +125,6 @@ namespace PSFileParse.MachO
                     slot_offset -= HashSize;
                     SpecialSlots[i] = new CSSpecialSlot(filebytes, slot_offset, i, HashType, HashSize);
                 }
-                    
             }
 
             if (NumberOfCodeSlots > 0)
