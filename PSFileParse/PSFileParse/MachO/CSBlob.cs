@@ -13,7 +13,7 @@ namespace PSFileParse.MachO
     // 
     public sealed class CSBlob
     {
-        public UInt32 Magic { get; }
+        public CSMagic Magic { get; }
         public UInt32 Length { get; }
         public UInt32 Count { get; }
         public CSBlobEntry[] Blobs { get; }
@@ -21,8 +21,7 @@ namespace PSFileParse.MachO
 
         public CSBlob(byte[] filebytes, UInt32 offset)
         {
-            var index_base = offset + 12u;
-            Magic = BinaryHelper.ToUInt32Big(filebytes, offset);
+            Magic = (CSMagic)BinaryHelper.ToUInt32Big(filebytes, offset);
             Length = BinaryHelper.ToUInt32Big(filebytes, offset + 4);
             Count = BinaryHelper.ToUInt32Big(filebytes, offset + 8);
             Blobs = new CSBlobEntry[Count];
