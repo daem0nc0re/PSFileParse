@@ -112,6 +112,7 @@ Some custom object have special methods.
 * [GitHub - apple-oss-distributions/xnu: osfmk/mach](https://github.com/apple-oss-distributions/xnu/tree/main/osfmk/mach)
 * [GitHub - apple-oss-distributions/cctools](https://github.com/apple-oss-distributions/cctools)
 * [GitHub - apple-oss-distributions/dyld](https://github.com/apple-oss-distributions/dyld)
+* [Apple - Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/AboutCS/AboutCS.html)
 
 ### Portable Executable Format / Common Object File Format
 * [Microsoft - PE Format](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format)

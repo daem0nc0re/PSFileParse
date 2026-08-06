@@ -97,7 +97,7 @@ namespace PSFileParse.MachO
         RequireLibraryValidation = 0x00002000,
         EntitlementsValidated = 0x00004000,
         NVRAMUnrestricted = 0x00008000,
-        RUNTIME = 0x00010000,
+        Runtime = 0x00010000,
         LinkerSigned = 0x00020000,
         ExecSetHard = 0x00100000,
         ExecSetKill = 0x00200000,
@@ -117,13 +117,14 @@ namespace PSFileParse.MachO
     [Flags]
     public enum CSExecSegFlags : UInt64
     {
-        MainBinary = 0x1,
-        AllowUnsigned = 0x10,
-        Debugger = 0x20,
-        JIT = 0x40,
-        SkipLibraryValidation = 0x80,
-        CanLoadCDHash = 0x100,
-        CanExecCDHash = 0x200
+        None = 0x00000000,
+        MainBinary = 0x00000001,
+        AllowUnsigned = 0x00000010,
+        Debugger = 0x00000020,
+        JIT = 0x00000040,
+        SkipLibraryValidation = 0x00000080,
+        CanLoadCDHash = 0x00000100,
+        CanExecCDHash = 0x00000200
     }
 
 
@@ -173,10 +174,10 @@ namespace PSFileParse.MachO
         CodeDirectory = 0,
         InfoSlot = 1,
         Requirements = 2,
-        ResourceDir = 3,
+        ResourceDirectory = 3,
         Application = 4,
         Entitlements = 5,
-        Unused = 6,
+        DMG = 6,
         DEREntitlements = 7,
         LaunchConstraintSelf = 8,
         LaunchConstraintParent = 9,
