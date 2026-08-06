@@ -11,7 +11,12 @@ namespace PSFileParse.MachO
     //     CS_BlobIndex index[];
     // } CS_SuperBlob
     // 
-    public sealed class CSBlob
+    // typedef struct __BlobIndex {
+    //     uint32_t type;
+    //     uint32_t offset;
+    // } CS_BlobIndex
+    // 
+    public sealed class CSSuperBlob
     {
         public CSMagic Magic { get; }
         public UInt32 Length { get; }
@@ -19,7 +24,7 @@ namespace PSFileParse.MachO
         public CSBlobEntry[] Blobs { get; }
 
 
-        public CSBlob(byte[] filebytes, UInt32 offset)
+        public CSSuperBlob(byte[] filebytes, UInt32 offset)
         {
             Magic = (CSMagic)BinaryHelper.ToUInt32Big(filebytes, offset);
             Length = BinaryHelper.ToUInt32Big(filebytes, offset + 4);

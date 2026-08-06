@@ -81,7 +81,9 @@
     <Compile Include="MachO\BuildVersionCommand.cs" />
     <Compile Include="MachO\CSBlobEntry.cs" />
     <Compile Include="MachO\CSCodeDirectory.cs" />
-    <Compile Include="MachO\CSBlob.cs" />
+    <Compile Include="MachO\CSRequirementEntry.cs" />
+    <Compile Include="MachO\CSRequirementsBlob.cs" />
+    <Compile Include="MachO\CSSuperBlob.cs" />
     <Compile Include="MachO\CSCodeSlot.cs" />
     <Compile Include="MachO\CSGenericBlobs.cs" />
     <Compile Include="MachO\CSHashBlob.cs" />

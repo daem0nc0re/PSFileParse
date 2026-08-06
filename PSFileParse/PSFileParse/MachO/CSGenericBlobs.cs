@@ -3,6 +3,13 @@ using System;
 
 namespace PSFileParse.MachO
 {
+    // 
+    // typedef struct __SC_GenericBlob {
+    //     uint32_t magic;
+    //     uint32_t length;
+    //     char data[];
+    // } CS_GenericBlob
+    // 
     public sealed class CSGenericBlobs
     {
         public CSMagic Magic { get; }

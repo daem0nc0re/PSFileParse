@@ -363,7 +363,7 @@ namespace PSFileParse.MachO
                 else if (command.Key == MachOLoadCommands.CodeSignature)
                 {
                     var info = (LinkEditDataCommand)LoadCommands[command.Value].Content;
-                    var signature = new CSBlob(filebytes, info.DataOffset);
+                    var signature = new CSSuperBlob(filebytes, info.DataOffset);
                     LinkEditData.Add(command.Key.ToString(), signature);
 
                     for (UInt32 i = 0u; i < signature.Count; i++)

@@ -8,7 +8,6 @@ namespace PSFileParse.MachO
     //     uint32_t type;
     //     uint32_t offset;
     // } CS_BlobIndex
-    // __attribute__ ((aligned(1)));
     // 
     public sealed class CSBlobEntry
     {
@@ -30,6 +29,8 @@ namespace PSFileParse.MachO
 
             if (Type == CSSlotType.CodeDirectory)
                 Content = new CSCodeDirectory(filebytes, superblob_base + Offset);
+            else if (Type == CSSlotType.Requirements)
+                Content = new CSRequirementsBlob(filebytes, superblob_base + Offset);
             else
                 Content = new CSGenericBlobs(filebytes, superblob_base + Offset);
         }

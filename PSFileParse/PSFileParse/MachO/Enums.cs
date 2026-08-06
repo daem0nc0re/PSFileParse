@@ -84,7 +84,7 @@ namespace PSFileParse.MachO
     {
         None = 0x00000000,
         Valid = 0x00000001,
-        ADHOC = 0x00000002,
+        Adhoc = 0x00000002,
         GetTaskAllow = 0x00000004,
         Installer = 0x00000008,
         ForcedLibraryValidation = 0x00000010,
@@ -166,6 +166,55 @@ namespace PSFileParse.MachO
         DetachedSignature = 0xFADE0CC1,
         BlobWrapper = 0xFADE0B01,
         EmbeddedLaunchConstraint = 0xFADE8181
+    }
+
+
+    public enum CSRequirementExprOperation
+    {
+        False,
+        True,
+        Ident,
+        AppleAnchor,
+        AnchorHash,
+        InfoKeyValue,
+        And,
+        Or,
+        CDHash,
+        Not,
+        InfoKeyField,
+        CertField,
+        TrustedCert,
+        TrustedCerts,
+        CertGeneric,
+        AppleGenericAnchor,
+        EntitlementField,
+        CertPolicy,
+        NamedAnchor,
+        NamedCode,
+        ExprOpCount
+    }
+
+
+    public enum CSRequirementMatchOperation
+    {
+        Exists,
+        Equal,
+        Contains,
+        BeginsWith,
+        EndsWith,
+        LessThan,
+        GreaterThan,
+        LessEqual,
+        GreaterEqual
+    }
+
+
+    [Flags]
+    public enum CSRequirementSemanticFlags : UInt32
+    {
+        FlagMask = 0xFF000000,
+        GenericFalse = 0x80000000,
+        GenericSkip = 0x40000000,
     }
 
 
