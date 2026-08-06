@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.Contracts;
 
 namespace PSFileParse.MachO
 {
@@ -77,6 +76,41 @@ namespace PSFileParse.MachO
         Pointer = 1,
         TextAbsolute32 = 2,
         TextPCRel32 = 3
+    }
+
+
+    [Flags]
+    public enum CSCodeDirectoryFlags : UInt32
+    {
+        None = 0x00000000,
+        Valid = 0x00000001,
+        ADHOC = 0x00000002,
+        GetTaskAllow = 0x00000004,
+        Installer = 0x00000008,
+        ForcedLV = 0x00000010,
+        InvalidAllowed = 0x00000020,
+        Hard = 0x00000100,
+        Kill = 0x00000200,
+        CheckExpiration = 0x00000400,
+        Restrict = 0x00000800,
+        Enforcement = 0x00001000,
+        RequireLV = 0x00002000,
+        EntitlementsValidated = 0x00004000,
+        NVRAMUnrestricted = 0x00008000,
+        RUNTIME = 0x00010000,
+        LinkerSigned = 0x00020000,
+        ExecSetHard = 0x00100000,
+        ExecSetKill = 0x00200000,
+        ExecSetEnforcement = 0x00400000,
+        ExecInheritSIP = 0x00800000,
+        Killed = 0x01000000,
+        NoUntrustedHelpers = 0x02000000,
+        PlatformBinary = 0x04000000,
+        PlatformPath = 0x08000000,
+        Debugged = 0x10000000,
+        Signed = 0x20000000,
+        DevCode = 0x40000000,
+        DataVaultController = 0x80000000
     }
 
 

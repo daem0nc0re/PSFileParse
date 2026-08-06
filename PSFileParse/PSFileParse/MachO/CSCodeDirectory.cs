@@ -62,7 +62,7 @@ namespace PSFileParse.MachO
         public CSMagic Magic { get; }
         public UInt32 Length { get; }
         public UInt32 Version { get; }
-        public UInt32 Flags { get; }
+        public CSCodeDirectoryFlags Flags { get; }
         public UInt32 HashOffset { get; }
         public UInt32 IdentOffset { get; }
         public UInt32 NumberOfSpecialSlots { get; }
@@ -99,7 +99,7 @@ namespace PSFileParse.MachO
             Magic = (CSMagic)BinaryHelper.ToUInt32Big(filebytes, offset);
             Length = BinaryHelper.ToUInt32Big(filebytes, offset + 4);
             Version = BinaryHelper.ToUInt32Big(filebytes, offset + 8);
-            Flags = BinaryHelper.ToUInt32Big(filebytes, offset + 12);
+            Flags = (CSCodeDirectoryFlags)BinaryHelper.ToUInt32Big(filebytes, offset + 12);
             HashOffset = BinaryHelper.ToUInt32Big(filebytes, offset + 16);
             IdentOffset = BinaryHelper.ToUInt32Big(filebytes, offset + 20);
             NumberOfSpecialSlots = BinaryHelper.ToUInt32Big(filebytes, offset + 24);
